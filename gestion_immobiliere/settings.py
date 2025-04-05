@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# Projet YESODA - Gestion Immobilière intelligente 🏢🤖
+
 """
 Django settings for gestion_immobiliere project.
 
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app_immobiliere_yesoda',  # Mon app est ajoutée ici
 ]
 
 MIDDLEWARE = [

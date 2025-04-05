@@ -1,87 +1,35 @@
-# gestion-immobiliere
-Application de gestion immobilière avec FastAPI et React
+# Projet de Gestion Immobilière YESODA 🏢🤖
 
-# Yesoda Real Estate Manager 🏢
+## 🎯 Objectif
+Créer une application de gestion immobilière intelligente qui centralise les données, automatise les tâches récurrentes, facilite la communication entre parties prenantes, et offre un tableau de bord complet au gestionnaire.
 
-Yesoda Real Estate Manager est une application web de gestion immobilière complète, conçue avec Django, qui intègre un système intelligent pour automatiser la gestion locative et améliorer la relation entre propriétaires, locataires et techniciens.
+## 🌍 Vision IA
+L'application s'appuie sur trois IA collaboratives :
 
-## 🚀 Objectifs principaux
+- **ChatGPT** : supervise la structure, la logique backend, les modèles Django, et l'intégration IA.
+- **Claude** : spécialiste des documents, des synthèses, des contrats, et des workflows utilisateurs.
+- **Grok 3** : moteur de veille, traitement de données externes et recommandations en temps réel.
+- **Humain (Le Coordinateur / Visionnaire)** : chef d’orchestre du projet, décideur final, vision produit.
 
-- Offrir une **vision complète** de l’activité immobilière pour un administrateur unique.
-- Numériser et organiser la gestion documentaire.
-- Suivre les interventions techniques et évaluer les prestataires.
-- Automatiser des tâches récurrentes grâce à un **agent intelligent LLM** intégré.
+## 🧱 Fonctionnalités clés (résumé)
+- Gestion des profils propriétaires / gestionnaires / locataires
+- Contrats, états des lieux, compteurs, documents
+- Notifications automatiques et rappels
+- Système de fidélité pour les bons locataires
+- Notes sur locataires exemplaires / problématiques
+- Planification d'interventions techniques
+- Évaluations des techniciens
+- Tableau de bord personnalisé
+- IA intégrée pour analyse, génération et supervision
 
----
-
-## 🧩 Fonctionnalités principales
-
-1. **Gestion des profils** :
-   - Propriétaires
-   - Locataires
-   - Techniciens
-   - Biens immobiliers
-
-2. **Documents et états** :
-   - Contrats (PDF)
-   - États des lieux (entrée et sortie)
-   - Compteurs (eau, électricité, gaz)
-
-3. **Notifications intelligentes** :
-   - Notification mensuelle du bilan locataire (chaque 1er du mois)
-   - Alertes personnalisées à terme (gérées par l'agent LLM)
-
-4. **Fidélité & comportement** :
-   - Système de points de fidélité pour bons locataires
-   - Système de remarques (bons ou mauvais comportements)
-
-5. **Interventions techniques** :
-   - Planification avec marge de 1h30 pour imprévus
-   - Évaluation des techniciens par les locataires
-   - Historique des interventions
-
-6. **Mission du jour** :
-   - Notes quotidiennes avec horodatage
-   - Suivi des actions budgétaires
-
-7. **Extensions futures** :
-   - Personnalisation de l’interface (mode sombre, rubriques personnalisables)
-   - Multi-utilisateur avec droits restreints
-   - Assistant IA central pour toute l’app
+📄 Voir le fichier `CAHIER_DES_CHARGES.md` pour la description complète.
 
 ---
 
-## 🛠️ Tech Stack
-
-- **Back-end** : Python, Django
-- **Base de données** : SQLite (dev), PostgreSQL (prod envisagé)
-- **Front-end** : HTML/CSS (bientôt), VueJS ou React (en extension)
-- **Intelligence Artificielle** : Intégration d’un agent LLM prévu
-- **Déploiement** : GitHub + déploiement Docker ou Railway à venir
+📄 **Voir aussi** :
+- `README_technique.md` : pour la coordination des IA et la collaboration technique.
+- `CAHIER_DES_CHARGES.md` : pour la version complète du cahier des charges.
 
 ---
 
-## 📁 Structure du dépôt
-
----
-
-## 🤖 Contribuer avec l'IA
-
-Le projet a été pensé pour accueillir un agent LLM intelligent qui automatisera une grande partie de la gestion (contrats, analyses, rappels, etc.).
-
-> Ce README et le cahier des charges ont été structurés pour permettre à une IA (comme ChatGPT ou un autre agent LLM) de reprendre le projet à n’importe quel moment, avec une compréhension claire des objectifs et du contexte.
-
----
-
-## 📌 Auteur
-
-Projet initié par **Yesoda_Real_Estate**, développé avec ❤️ pour une gestion immobilière moderne et intelligente.
-
----
-
-## 📃 Licence
-
-Projet open source. Licence à définir (MIT, GPL, etc.).
-
-
-
+🚀 Projet dirigé par **YESODA**, avec une approche centrée sur la technologie, l’intelligence artificielle, et l’humain.
