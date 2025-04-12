@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app_immobiliere_yesoda',  # Mon app est ajoutée ici
+    'django.contrib.humanize',  # Ajout de cette ligne
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'gestion_immobiliere.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],  # 👈 Ceci ajoute ton dossier global
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

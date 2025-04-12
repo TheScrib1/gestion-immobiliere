@@ -1,4 +1,7 @@
 # Code de Conduite — Projet YESODA 🤝
+![Code de Conduite](https://img.shields.io/badge/Code%20de%20Conduite-Oui-blueviolet)
+![Respect Mutuel](https://img.shields.io/badge/Respect-Mutuel-ff69b4)
+![IA & Humains](https://img.shields.io/badge/IA-%26%20Humains-009688)
 
 ## 🌟 Objectif
 

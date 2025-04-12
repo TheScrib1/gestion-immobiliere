@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Technicien</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">  <!-- Lien vers ton fichier CSS, si tu en as un -->
+</head>
+<body>
+    <h1>Ajouter un Technicien</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Affiche les champs du formulaire sous forme de paragraphes -->
+        <button type="submit">Ajouter le Technicien</button>
+    </form>
+    <br>
+    <a href="{% url 'liste_techniciens' %}">Retour à la liste des techniciens</a>
+</body>
+</html>

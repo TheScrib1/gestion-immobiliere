@@ -1,4 +1,8 @@
-# Projet de Gestion Immobilière YESODA 🏢🤖
+# Projet de Gestion Immobilière YESODA 🏢🤖  
+![Licence](https://img.shields.io/badge/Licence-MIT-blue.svg)
+![Statut](https://img.shields.io/badge/Statut-En%20cours-yellow)
+![IA](https://img.shields.io/badge/IA-Collaborative-brightgreen)
+![État du projet](https://img.shields.io/badge/État-Alpha-orange)
 
 ## 🎯 Objectif
 Créer une application de gestion immobilière intelligente qui centralise les données, automatise les tâches récurrentes, facilite la communication entre parties prenantes, et offre un tableau de bord complet au gestionnaire.

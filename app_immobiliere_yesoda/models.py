@@ -1,62 +1,108 @@
 from django.db import models
 
+# ========================
+# Propriétaire
+# ========================
 class Proprietaire(models.Model):
     nom = models.CharField(max_length=100)
+    prenom = models.CharField(max_length=100, blank=True, null=True)
     telephone = models.CharField(max_length=20)
-    email = models.EmailField()
+    email = models.EmailField(blank=True, null=True)
+    numero_whatsapp = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
-        return self.nom
+        return f"{self.prenom} {self.nom}" if self.prenom else self.nom
 
 
+# ========================
+# Locataire
+# ========================
 class Locataire(models.Model):
     nom = models.CharField(max_length=100)
+    prenom = models.CharField(max_length=100)
     telephone = models.CharField(max_length=20)
-    email = models.EmailField()
-    date_entree = models.DateField()
-    date_sortie = models.DateField(null=True, blank=True)
-    remarques = models.TextField(blank=True)
+    email = models.EmailField(blank=True, null=True)
+    numero_whatsapp = models.CharField(max_length=20, blank=True, null=True)
+    num_cni_passport = models.CharField(max_length=50, blank=True, null=True)
+    documents_pdf = models.FileField(upload_to='documents_locataires/', blank=True, null=True)
+    notes_service = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.nom
+        return f"{self.prenom} {self.nom}"
 
+
+# ========================
+# Bien immobilier
+# ========================
+DEVISE_CHOICES = [
+    ('XOF', 'Franc CFA (FCFA)'),
+    ('EUR', 'Euro (€)'),
+    ('USD', 'Dollar ($)'),
+    ('GBP', 'Livre (£)'),
+    ('AUTRE', 'Autre'),
+]
 
 class Bien(models.Model):
-    adresse = models.CharField(max_length=255)
-    surface = models.FloatField()
-    loyer = models.DecimalField(max_digits=10, decimal_places=2)
-    proprietaire = models.ForeignKey(Proprietaire, on_delete=models.CASCADE)
-    locataire = models.ForeignKey(Locataire, on_delete=models.SET_NULL, null=True, blank=True)
-
-    contrat_pdf = models.FileField(upload_to='contrats/', null=True, blank=True)
-    compteur_eau = models.IntegerField(default=0)
-    compteur_electricite = models.IntegerField(default=0)
-    compteur_gaz = models.IntegerField(default=0)
-    etat_lieux_entree = models.TextField(blank=True)
-    etat_lieux_sortie = models.TextField(blank=True)
+    nom = models.CharField(max_length=255, default="Nom du bien", verbose_name="Nom du bien")
+    type_bien = models.CharField(max_length=255, default="description", verbose_name="Description du bien", help_text="Duplex, immeuble, magasin, entrepôt…")
+    quartier = models.CharField(max_length=255, blank=True, verbose_name="Quartier")
+    ville = models.CharField(max_length=255, verbose_name="Ville")
+    adresse = models.CharField(max_length=255, verbose_name="Adresse complète")
+    surface = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Surface en m²")
+    loyer = models.PositiveIntegerField(verbose_name="Loyer", help_text="Montant en chiffres (ex : 100000)")
+    devise = models.CharField(max_length=10, choices=DEVISE_CHOICES, default='XOF', verbose_name="Devise")
+    locataire = models.ForeignKey('Locataire', on_delete=models.SET_NULL, null=True, blank=True, help_text="Locataire actuellement lié à ce bien (facultatif).")
+    proprietaire = models.ForeignKey('Proprietaire', on_delete=models.CASCADE, help_text="Propriétaire du bien (obligatoire).")
 
     def __str__(self):
-        return self.adresse
+        return f"{self.nom} - {self.ville}"
 
 
+# ========================
+# Technicien
+# ========================
 class Technicien(models.Model):
     nom = models.CharField(max_length=100)
-    telephone = models.CharField(max_length=20)
     specialite = models.CharField(max_length=100)
+    telephone = models.CharField(max_length=20)
+    email = models.EmailField(blank=True, null=True)
+    numero_whatsapp = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
         return f"{self.nom} - {self.specialite}"
 
 
+# ========================
+# Intervention
+# ========================
 class Intervention(models.Model):
     bien = models.ForeignKey(Bien, on_delete=models.CASCADE)
-    technicien = models.ForeignKey(Technicien, on_delete=models.CASCADE)
-    date = models.DateTimeField()
+    technicien = models.ForeignKey(Technicien, on_delete=models.SET_NULL, null=True, blank=True)
+    date_intervention = models.DateField()
     description = models.TextField()
-    duree_estimee = models.DurationField(help_text="Durée estimée (hh:mm:ss)")
-    marge_prevue = models.DurationField(default="01:30:00", help_text="Marge pour imprévus (hh:mm:ss)")
-    evaluation = models.PositiveSmallIntegerField(null=True, blank=True, help_text="Note donnée par le locataire (1-5)")
+    rdv_fixe_avec_locataire = models.DateTimeField(blank=True, null=True)
+    marge_prevue = models.DurationField(default=0)
+    retour_client_commentaire = models.TextField(blank=True, null=True)
+    retour_client_note = models.PositiveIntegerField(blank=True, null=True)
 
     def __str__(self):
-        return f"Intervention sur {self.bien.adresse} par {self.technicien.nom} le {self.date.strftime('%d/%m/%Y')}"
+        return f"Intervention sur {self.bien} le {self.date_intervention}"
 
+
+# ========================
+# Mission du jour (Gestionnaire)
+# ========================
+class MissionDuJour(models.Model):
+    STATUT_CHOICES = [
+        ('en_cours', 'En Cours'),
+        ('terminee', 'Terminée'),
+        ('annulee', 'Annulée'),
+    ]
+
+    date = models.DateField()
+    budget_estime = models.DecimalField(max_digits=10, decimal_places=2)
+    taches = models.TextField()
+    statut = models.CharField(max_length=10, choices=STATUT_CHOICES, default='en_cours')
+
+    def __str__(self):
+        return f"Mission du {self.date} - Statut: {self.get_statut_display()}"

@@ -1,0 +1,18 @@
+<!-- app_immobiliere_yesoda/templates/techniciens/liste.html -->
+<h1>Liste des techniciens</h1>
+
+<form method="get">
+    <input type="text" name="specialite" placeholder="Filtrer par spécialité">
+    <button type="submit">Rechercher</button>
+</form>
+
+<ul>
+    {% for technicien in techniciens %}
+        <li>
+            {{ technicien.nom }} — {{ technicien.specialite }}
+            <a href="{% url 'detail_technicien' technicien.id %}">Voir détails</a>
+        </li>
+    {% empty %}
+        <li>Aucun technicien trouvé.</li>
+    {% endfor %}
+</ul>
